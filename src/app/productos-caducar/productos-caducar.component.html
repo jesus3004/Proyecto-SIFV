@@ -1,0 +1,86 @@
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+          <div class="box box-info">
+          
+            <!--Tabla-->
+            <div class="box-body" style="justify-content: center;">
+              <h1 style="text-align: center;">Productos a caducar</h1>
+              <div class="table-responsive">
+                <mat-form-field appearance="standard">
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+                </mat-form-field>
+                <div>
+                  <table mat-table [dataSource]="dataSource" class="table no-margin" matSort>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="ID">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.codigoDeBarras}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="Nombre">
+                      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombrePorducto}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="provedor">
+                      <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+                      <td mat-cell *matCellDef="let element"> {{element.provedor}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="Lote">
+                      <th mat-header-cell *matHeaderCellDef> Lote. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.numeroDeLote}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fechaDecaducidad}} </td>
+                    </ng-container>
+  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Existencia">
+                      <th mat-header-cell *matHeaderCellDef> Existencia </th>
+                      <td mat-cell *matCellDef="let element"> {{element.existencia}} </td>
+                    </ng-container>
+  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Precio">
+                      <th mat-header-cell *matHeaderCellDef> Precio </th>
+                      <td mat-cell *matCellDef="let element"> {{element.costoDeCompra}} </td>
+                    </ng-container>
+  
+                   
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+                  <mat-paginator
+                    [pageSizeOptions]="[5, 10, 15, 20]"
+                    [length]="listaproductos.length"
+                    aria-label="Select page"
+                  ></mat-paginator>
+                </div>
+                
+
+              </div>
+              <!-- Fin tabla -->
+            </div>
+        
+            <!--Fin cuadro -->
+          </div>
+          
+          <!-- Fin -->
+        </div>
+        <!-- Fin -->
+      </div>
+      <!-- Fin -->
+    </section>
+    
+    

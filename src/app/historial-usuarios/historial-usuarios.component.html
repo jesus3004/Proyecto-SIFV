@@ -1,0 +1,221 @@
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+          <div class="box box-info">
+          
+            <!--Tabla-->
+            <div class="box-body">
+              <h1>Usuarios</h1>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Rol</th>
+                    <th>Calle</th>
+                    <th>Colonia</th>
+                    <th>Controles</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let lista of listaUsuarios">
+                    <td>{{lista.clavUsuario}}</td>
+                    <td>{{lista.nombreUsuario}}</td>
+                    <td>{{lista.telefonoUsuario}}</td>
+                    <td>{{lista.correoUsuario}}</td>
+                    <td>{{lista.passUsuario}}</td>
+                    <td>{{lista.rolUsuario}}</td>
+                    <td>{{lista.calleUsuario}}</td>
+                    <td>{{lista.coloniaUsuario}}</td>
+                    <td> 
+                      <div style="display: flex">
+                        <button
+                          class="btn btn-danger glyphicon glyphicon-remove"
+                          style="margin: 3px"
+                          (click)="borrar(lista.clavUsuario)"
+                        ></button>
+                        <br />
+                        <button
+                          class="btn btn-warning glyphicon glyphicon-pencil"
+                          style="margin: 3px"
+                          (click)="abrir(lista)"
+                        ></button>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Fin tabla -->
+            </div>
+        
+            <!--Fin cuadro -->
+          </div>
+          
+          <!-- Fin -->
+        </div>
+        <!-- Fin -->
+      </div>
+      <!-- Fin -->
+
+      <div class="tarjeta_de_Carrito" [ngClass]="tarjet ? 'tarjeta' : 'star'" style="padding: 2%;" id="tarjeta">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Datos Generales</h3>
+            <!-- Inicio input clave de usuario -->
+            <div class="form-group">
+              <label>Clave de usuario:</label>
+      
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-key"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  maxlength="70"
+                  [(ngModel)]="usuarios.clavUsuario"
+                />
+              </div>
+            </div>
+            <!-- Fin input clave de usuario -->
+            <!-- Inicio input Nombre de usuario -->
+            <div class="form-group">
+              <label>Nombre:</label>
+      
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  maxlength="70"
+                  [(ngModel)]="usuarios.nombreUsuario"
+                />
+              </div>
+            </div>
+            <!-- Fin input Nombre de usuario -->
+            <!-- Inicio input telefono -->
+            <div class="form-group">
+              <label>Telefono:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' 
+                [(ngModel)]="usuarios.telefonoUsuario"
+                data-mask>
+              </div>
+            </div>
+            <!-- Fin input telefono -->
+            <!-- Inicio input Correo -->
+            <div class="form-group">
+              <label>Correo:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-google"></i>
+                </div>
+                <input type="email" 
+                [(ngModel)]="usuarios.correoUsuario"
+                class="form-control">
+              </div>
+            </div>
+            <!-- Fin input correo -->
+            <!-- Inicio input contraseña -->
+            <div class="form-group">
+              <label>Contraseña:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa  fa-eye"></i>
+                </div>
+                <input type="password" 
+                [(ngModel)]="usuarios.clavUsuario"
+                class="form-control">
+              </div>
+            </div>
+            <!-- Fin input contraseña -->
+            <!-- Inicio Rol de usaurio -->
+            
+            <!-- Fin Rol de usaurio -->
+          </div>
+          
+          <!-- Lado derecho de la columna-->
+          <div class="col-md-6">
+            <h3>Direccion</h3>
+            <!-- Inicio input Calle -->
+            <div class="form-group">
+              <label>Calle:</label>
+      
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-street-view"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  maxlength="70"
+                  [(ngModel)]="usuarios.calleUsuario"
+                />
+              </div>
+            </div>
+            <!-- Fin input Calle -->
+            <!-- Inicio input Colonia -->
+            <div class="form-group">
+              <label>Colonia:</label>
+      
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="glyphicon glyphicon-map-marker"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  maxlength="70"
+                  [(ngModel)]="usuarios.coloniaUsuario"
+                />
+              </div>
+            </div>
+            <!-- Fin input Colonia -->
+            <!-- Inicio input numero de casa -->
+            <div class="form-group">
+              <label>Numero de casa:</label>
+      
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  maxlength="70"
+                  [(ngModel)]="usuarios.numCasUsuario"
+                />
+              </div>
+            </div>
+            <!-- Fin input numero de casa -->
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center;margin-top: 5%;">
+          <button
+            class="btn  btn-lg btn-danger glyphicon glyphicon-remove"
+            style="margin: 3px"
+            (click)="cerrar()"
+          > Cancelar</button>
+          <br />
+          <button
+            class="btn btn-lg btn-warning glyphicon glyphicon-plus"
+            style="margin: 3px"
+            (click)="agregar()"
+          > Modificar</button>
+        </div>
+      </div>
+    </section>
+    
+    

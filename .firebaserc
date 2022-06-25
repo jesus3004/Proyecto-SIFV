@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sifv-c5b94": {
+      "hosting": {
+        "proyecto": [
+          "sifv-c5b94"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sifv-c5b94"
+  }
+}

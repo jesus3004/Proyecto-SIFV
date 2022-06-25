@@ -1,0 +1,174 @@
+<div class="box-body">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Datos del proveedor</h3>
+      <!-- Inicio input clave de Proveedor -->
+      <div class="form-group">
+        <label>Clave de Proveedor:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-key"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            [textMask]="{ mask: masPro }"
+            [(ngModel)]="datosProvedores.clavProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input clave de Proveedor -->
+      <!-- Inicio input Nombre de Proveedor -->
+      <div class="form-group">
+        <label>Nombre:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            maxlength="70"
+            [(ngModel)]="datosProvedores.nombreProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input Nombre de Proveedor -->
+      <!-- Inicio input telefono -->
+      <div class="form-group">
+        <label>Telefono:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-phone"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            [textMask]="{ mask: mask }"
+            [(ngModel)]="datosProvedores.telefonoProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input telefono -->
+      <!-- Inicio input Correo -->
+      <div class="form-group">
+        <label>Correo:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-google"></i>
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="datosProvedores.correoProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input correo -->
+    </div>
+    <div class="col-md-6">
+      <h3>Datos de la empresa</h3>
+      <!-- Inicio input nombre de la empresa -->
+      <div class="form-group">
+        <label>Nombre de la empresa:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-industry"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            maxlength="70"
+            [(ngModel)]="datosProvedores.empresaProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input nombre de la empresa -->
+      <!-- Inicio input telefono de la empresa -->
+      <div class="form-group">
+        <label>Telefono de la empresa:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-phone-square"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            [textMask]="{ mask: mask }"
+            [(ngModel)]="datosProvedores.telEmProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input telefono de la empresa -->
+      <!-- Inicio input calle -->
+      <div class="form-group">
+        <label>Calle:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-road"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            maxlength="70"
+            [(ngModel)]="datosProvedores.calleProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input calle -->
+      <!-- Inicio input colonia -->
+      <div class="form-group">
+        <label>Colonia:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-map-marker"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="datosProvedores.coloniaProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input colonia -->
+      <!-- Inicio input Estado -->
+      <div class="form-group">
+        <label>Estado:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-map"></i>
+          </div>
+          <input
+            type="Text"
+            class="form-control"
+            [(ngModel)]="datosProvedores.estadoProvedor"
+          />
+        </div>
+      </div>
+      <!-- Fin input estado -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <button
+          class="btn btn-sm btn-block btn-danger glyphicon glyphicon-remove"
+          style="margin: 3px"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <button
+          class="btn btn-sm btn-block btn-success glyphicon glyphicon-plus"
+          style="margin: 3px"
+          (click)="agregarProvedor()"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

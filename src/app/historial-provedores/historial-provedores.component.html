@@ -1,0 +1,247 @@
+<section class="content">
+  <!-- Main row -->
+  <div class="row">
+    <!-- Left col -->
+    <div class="col-md-12">
+      <div class="box box-info">
+        <!--Tabla-->
+        <div class="box-body">
+          <h1>Proveedores</h1>
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Telefono</th>
+                  <th>Correo</th>
+                  <th>Empresa</th>
+                  <th>Telefono Empresa</th>
+                  <th>Calle</th>
+                  <th>Colonia</th>
+                  <th>Estado</th>
+                  <th>Controles</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let provedor of historialProvedores">
+                  <td>{{ provedor.clavProvedor }}</td>
+                  <td>{{ provedor.nombreProvedor }}</td>
+                  <td>{{ provedor.telefonoProvedor }}</td>
+                  <td>{{ provedor.correoProvedor }}</td>
+                  <td>{{ provedor.telEmProvedor }}</td>
+                  <td>{{ provedor.empresaProvedor }}</td>
+                  <td>{{ provedor.calleProvedor }}</td>
+                  <td>{{ provedor.coloniaProvedor }}</td>
+                  <th>{{ provedor.estadoProvedor }}</th>
+                  <td>
+                    <div style="display: flex">
+                      <button
+                        class="btn btn-danger glyphicon glyphicon-remove"
+                        style="margin: 3px"
+                        (click)="borrar(provedor.clavProvedor)"
+                      ></button>
+                      <br />
+                      <button
+                        class="btn btn-warning glyphicon glyphicon-pencil"
+                        style="margin: 3px"
+                        (click)="abrir(provedor)"
+                      ></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Fin tabla -->
+        </div>
+
+        <!--Fin cuadro -->
+      </div>
+
+      <!-- Fin -->
+    </div>
+    <!-- Fin -->
+  </div>
+  <!-- Fin -->
+
+  <div
+    class="tarjeta_de_Carrito"
+    [ngClass]="tarjet ? 'tarjeta' : 'star'"
+    style="padding: 2%"
+    id="tarjeta"
+  >
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Datos del proveedor</h3>
+        <!-- Inicio input clave de Proveedor -->
+        <div class="form-group">
+          <label>Clave de Proveedor:</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-key"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="proveedores.clavProvedor"
+            />
+          </div>
+        </div>
+        <!-- Fin input clave de Proveedor -->
+        <!-- Inicio input Nombre de Proveedor -->
+        <div class="form-group">
+          <label>Nombre:</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="proveedores.nombreProvedor"
+              placeholder=""
+            />
+          </div>
+        </div>
+        <!-- Fin input Nombre de Proveedor -->
+        <!-- Inicio input telefono -->
+        <div class="form-group">
+          <label>Telefono:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="proveedores.telefonoProvedor"
+            />
+          </div>
+        </div>
+        <!-- Fin input telefono -->
+        <!-- Inicio input Correo -->
+        <div class="form-group">
+          <label>Correo:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-google"></i>
+            </div>
+            <input
+              type="email"
+              [(ngModel)]="proveedores.correoProvedor"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <!-- Fin input correo -->
+      </div>
+      <div class="col-md-6">
+        <h3>Datos de la empresa</h3>
+        <!-- Inicio input nombre de la empresa -->
+        <div class="form-group">
+          <label>Nombre de la empresa:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-industry"></i>
+            </div>
+            <input
+              type="text"
+              [(ngModel)]="proveedores.empresaProvedor"
+              class="form-control"
+              maxlength="70"
+            />
+          </div>
+        </div>
+        <!-- Fin input nombre de la empresa -->
+        <!-- Inicio input telefono de la empresa -->
+        <div class="form-group">
+          <label>Telefono de la empresa:</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone-square"></i>
+            </div>
+            <input
+              type="text"
+              [(ngModel)]="proveedores.telEmProvedor"
+              class="form-control"
+              maxlength="70"
+            />
+          </div>
+        </div>
+        <!-- Fin input telefono de la empresa -->
+        <!-- Inicio input calle -->
+        <div class="form-group">
+          <label>Calle:</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="glyphicon glyphicon-road"></i>
+            </div>
+            <input
+              type="text"
+              [(ngModel)]="proveedores.calleProvedor"
+              class="form-control"
+              maxlength="70"
+            />
+          </div>
+        </div>
+        <!-- Fin input calle -->
+        <!-- Inicio input colonia -->
+        <div class="form-group">
+          <label>Colonia:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="glyphicon glyphicon-map-marker"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              data-mask
+              [(ngModel)]="proveedores.coloniaProvedor"
+            />
+          </div>
+        </div>
+        <!-- Fin input colonia -->
+        <!-- Inicio input Estado -->
+        <div class="form-group">
+          <label>Estado:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-map"></i>
+            </div>
+            <input
+              type="Text"
+              class="form-control"
+              [(ngModel)]="proveedores.estadoProvedor"
+            />
+          </div>
+        </div>
+        <!-- Fin input estado -->
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 5%">
+      <button
+        class="btn btn-lg btn-danger glyphicon glyphicon-remove"
+        style="margin: 3px"
+        (click)="cerrar()"
+      >
+        Cancelar
+      </button>
+      <br />
+      <button
+        class="btn btn-lg btn-warning glyphicon glyphicon-plus"
+        style="margin: 3px"
+        (click)="agregar()"
+      >
+        Modificar
+      </button>
+    </div>
+  </div>
+</section>
