@@ -1,7 +1,7 @@
 <div class="box-body">
   <div class="row">
     <!-- Inicio input clave del producto -->
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group">
         <label>Clave del producto:</label>
         <div class="input-group">
@@ -14,7 +14,7 @@
     </div>
     <!-- Fin input clave del producto -->
     <!-- Inicio input Nombre del producto -->
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="form-group">
         <label>Nombre del producto:</label>
         <div class="input-group">
@@ -26,6 +26,19 @@
       </div>
     </div>
     <!-- Fin input Nombre del producto -->
+    <!-- Inicio input Marca -->
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Marca</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-inbox"></i>
+          </div>
+          <input [(ngModel)]="datosProductos.nombrePorducto" type="text" class="form-control" maxlength="70" placeholder="Marca"/>
+        </div>
+      </div>
+    </div>
+    <!-- Fin input Marca -->
     <!-- Inicio input Nombre del producto -->
     <div class="col-md-4">
       <div class="form-group">
@@ -42,6 +55,19 @@
       </div>
     </div>
     <!-- Fin input Nombre del producto -->
+    <!-- Inicio input Descripcion -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Descripcion</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-inbox"></i>
+          </div>
+          <input [(ngModel)]="datosProductos.nombrePorducto" type="text" class="form-control" maxlength="70" placeholder="Descripcion"/>
+        </div>
+      </div>
+    </div>
+    <!-- Fin input Descripcion -->
   </div>
   
   <div class="row">
@@ -230,10 +256,19 @@
                       <th mat-header-cell *matHeaderCellDef> controles</th>
                       <td mat-cell *matCellDef="let element"> <div style="display: flex">
                         <a
-                          class="btn btn-danger btn-sm glyphicon glyphicon-remove"
-                          style="margin: 3px"
+                          class=""
+                          style="margin: 3px; color: #EA0F2D;"
+                          matTooltip="Borrar"
                           (click)="borrarProducto(element)"
-                        ></a>
+                        ><mat-icon>delete</mat-icon></a>
+                        <a
+                        class=""
+                          style="margin: 3px; color: #F2EF09;"
+                          matTooltip="Editar"
+                          (click)="borrarProducto(element)"
+                        >
+                          <mat-icon>edit</mat-icon>
+                        </a>
                         <br />
                       </div> </td>
                     </ng-container>

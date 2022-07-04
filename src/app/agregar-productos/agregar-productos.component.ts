@@ -42,6 +42,8 @@ export class AgregarProductosComponent implements OnInit {
     precioPorUnidad: 0,
     precioPorPieza: 0,
     costoDeCompra: 0,
+    descripcion: '',
+    marca: ''
   };
 
   limpiar:lotes = {
@@ -57,7 +59,9 @@ export class AgregarProductosComponent implements OnInit {
     formaDeventa: '',
     precioPorUnidad: 0,
     precioPorPieza: 0,
-    costoDeCompra: 0
+    costoDeCompra: 0,
+    descripcion: '',
+    marca: ''
   }
 
   caducar:caducidad ={
@@ -69,7 +73,8 @@ export class AgregarProductosComponent implements OnInit {
     numeroDeLote: '',
     existencia: 0,
     truc: 0
-  }
+  } 
+  
   agregar=true;
   editar=false;
   // displayedColumns: string[] = ['codigo', 'Nombre', 'Provedor', 'Lote', 'Fecha', 'Forma de Venta', 'Precio p/u', 'Precio p/p', 'Costo', 'Existencia','acciones'];

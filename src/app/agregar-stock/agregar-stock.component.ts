@@ -38,7 +38,9 @@ export class AgregarStockComponent implements OnInit {
     formaDeventa: '',
     precioPorUnidad: 0,
     precioPorPieza: 0,
-    costoDeCompra: 0
+    costoDeCompra: 0,
+    descripcion: '',
+    marca: ''
   }
   
   datosLotes: lotes = {

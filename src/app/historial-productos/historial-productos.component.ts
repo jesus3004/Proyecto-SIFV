@@ -28,6 +28,8 @@ export class HistorialProductosComponent implements OnInit {
     precioPorUnidad: 0,
     precioPorPieza: 0,
     costoDeCompra: 0,
+    descripcion: '',
+    marca: ''
   };
   displayedColumns: string[] = ['codigo','nombre','provedor', 'precioPU', 'precioPP', 'costo', 'controles'];
   dataSource: MatTableDataSource<agregarProductos>;

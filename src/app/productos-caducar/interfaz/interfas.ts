@@ -12,6 +12,8 @@ export interface lotes {
     precioPorUnidad:number;
     precioPorPieza:number;
     costoDeCompra:number;
+    descripcion:string;
+    marca:string;
   }
 
   export interface provedores{
