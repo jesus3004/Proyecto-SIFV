@@ -1,0 +1,32 @@
+
+
+.logo {
+  height: 130px;
+  margin-bottom: 10px;
+}
+
+.wrapper{
+  width: 100%;
+  margin: auto;
+  background: white;
+  align-items: center;
+  height: 100vh;
+  min-height:600px;
+}
+.body {
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+  padding: 15px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-floating {
+  text-align: start;
+}
+
+.errorLabel {
+  margin-left: 5px;
+}

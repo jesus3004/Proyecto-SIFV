@@ -1,0 +1,468 @@
+<div class="wrapper">
+  <div *ngIf="!loading" class="body">
+    <img
+      class="logo"
+      src="../../../assets/imagenes/logo_sifv.png"
+      alt="Login"
+    />
+    <h1>Registrarse</h1>
+    <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario">
+      <div class="flexor">
+
+        <div class="body2">
+          <h5>Datos del usuario</h5>
+          <!-- Nombre del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombreusuario"
+              placeholder="Nombre"
+            />
+            <label>Nombre completo</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('nombreusuario')?.hasError('required') &&
+                registrarUsuario.get('nombreusuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>nombre</strong> es requerido
+            </span>
+            <span
+              *ngIf="
+                registrarUsuario.get('nombreUsuario')?.hasError('required') &&
+                registrarUsuario.get('nombreUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>nombre</strong> es invalido
+            </span>
+          </div>
+          <!-- Fin Nombre del Usuario -->
+
+          <!-- Telefono del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              [textMask]="{ mask: mascaraParaTelefono }"
+              type="text"
+              class="form-control"
+              formControlName="telefonoUsuario"
+              placeholder="Password"
+            />
+            <label>Telefono</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('telefonoUsuario')?.hasError('required') &&
+                registrarUsuario.get('telefonoUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>telefono</strong> es requerida
+            </span>
+            <span
+              *ngIf="
+                registrarUsuario.get('telefonoUsuario')?.hasError('minlength') &&
+                registrarUsuario.get('telefonoUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>telefono</strong> debe tener 10 caracteres
+            </span>
+          </div>
+          <!-- Fin Telefono del Usuario -->
+          
+          <!-- Email del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="name@example.com"
+            />
+            <label>Email</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('email')?.hasError('required') &&
+                registrarUsuario.get('email')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>correo</strong> es requerido
+            </span>
+            <span
+              *ngIf="
+                registrarUsuario.get('email')?.hasError('email') &&
+                registrarUsuario.get('email')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>correo</strong> es invalido
+            </span>
+          </div>
+          <!-- Fin Email del Usuario -->
+
+          <div class="flexor">
+            <!-- Password del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Password"
+            />
+            <label>Password</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('password')?.hasError('required') &&
+                registrarUsuario.get('password')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>password</strong> es requerida
+            </span>
+            <span
+              *ngIf="
+                registrarUsuario.get('password')?.hasError('minlength') &&
+                registrarUsuario.get('password')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>password</strong> debe tener 6 caracteres
+            </span>
+          </div>
+          <!-- Fin Password del Usuario -->
+
+          <!-- Repetir Password del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="repetirPassword"
+              placeholder="Repetir Password"
+            />
+            <label>Repetir Passowrd</label>
+          </div>
+          <!-- Fin Repetir Password del Usuario -->
+          </div>
+          
+          <!-- Calle del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="calleUsuario"
+              placeholder="Calle"
+            />
+            <label>Calle</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('calleUsuario')?.hasError('required') &&
+                registrarUsuario.get('calleUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>calle</strong> es requerido
+            </span>
+          </div>
+          <!--  Fin Calle del Usuario -->
+
+          <!-- Colonia del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="coloniaUsuario"
+              placeholder="Colonia"
+            />
+            <label>Colonia</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('coloniaUsuario')?.hasError('required') &&
+                registrarUsuario.get('coloniaUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>colonia</strong> es requerida
+            </span>
+          </div>
+          <!--  Fin Colonia del Usuario -->
+
+          <!-- Numero de casa del Usuario -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="numCasUsuario"
+              placeholder="Numero de casa"
+            />
+            <label>Numero de casa</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('numCasUsuario')?.hasError('required') &&
+                registrarUsuario.get('numCasUsuario')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>numero de casa</strong> es requerido
+            </span>
+            
+          </div>
+          <!--  Fin Numero de casa del Usuario -->
+        </div>
+        <div class="body2">
+          <h5>Datos de la veterinaria</h5>
+          <!-- Nombre de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombreEmpresa"
+              placeholder="Nombre de la veterinaria"
+            />
+            <label>Nombre de la veterinaria</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('nombreEmpresa')?.hasError('required') &&
+                registrarUsuario.get('nombreEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>nombre</strong> es requerida
+            </span>
+          </div>
+          <!-- Fin Nombre de la empresa -->
+    
+          <!-- Telefono de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              [textMask]="{ mask: mascaraParaTelefono }"
+              type="text"
+              class="form-control"
+              formControlName="telefonoEmpresa"
+              placeholder="Telefono"
+            />
+            <label>Telefono</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('telefonoEmpresa')?.hasError('required') &&
+                registrarUsuario.get('telefonoEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>password</strong> es requerida
+            </span>
+
+          </div>
+          <!-- Fin Telefono de la empresa -->
+
+          <!-- Calle de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="calleEmpresa"
+              placeholder="Calle"
+            />
+            <label>Calle</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('calleEmpresa')?.hasError('required') &&
+                registrarUsuario.get('calleEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>calle</strong> es requerida
+            </span>
+          </div>
+          <!-- Fin Calle de la empresa -->
+
+          <!-- Colonia de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="coloniaEmpresa"
+              placeholder="Colonia"
+            />
+            <label>Colonia</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('coloniaEmpresa')?.hasError('required') &&
+                registrarUsuario.get('coloniaEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              La <strong>colonia</strong> es requerida
+            </span>
+          </div>
+          <!-- Fin Colonia de la empresa -->
+
+          <!-- Municipio de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="municipioEmpresa"
+              placeholder="Municipio"
+            />
+            <label>Municipio</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('municipioEmpresa')?.hasError('required') &&
+                registrarUsuario.get('municipioEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+              El <strong>municipio</strong> es requerido
+            </span>
+          </div>
+          <!-- Fin Municipio de la empresa -->
+
+          <!-- Estado de la empresa -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="estadoEmpresa"
+              placeholder="Estado"
+            />
+            <label>Estado</label>
+            <span
+              *ngIf="
+                registrarUsuario.get('estadoEmpresa')?.hasError('required') &&
+                registrarUsuario.get('estadoEmpresa')?.touched
+              "
+              class="text-danger errorLabel"
+            >
+             El <strong>estado</strong> es requerido
+            </span>
+          </div>
+          <!-- Fin Estado de la empresa -->
+        </div>
+      </div>
+      <div class="d-grid gap-2 mb-3">
+        <button
+          class="btn btn-primary btn-lg"
+          [disabled]="registrarUsuario.invalid"
+          type="submit"
+        >
+          Aceptar
+        </button>
+      </div>
+      <a routerLink="/login">Volver</a>
+    </form>
+  </div>
+  <app-spiner *ngIf="loading"></app-spiner>
+</div>
+
+<!--<div class="container">
+  <input type="checkbox" id="flip">
+  <div class="cover">
+    <div class="front">
+      
+      <div class="text">
+        <span class="text-1"> <br> </span>
+        <span class="text-2"></span>
+      </div>
+    </div>
+    <div class="back">
+     
+      <div class="text">
+        <span class="text-1"></span>
+        <span class="text-2"></span>
+      </div>
+    </div>
+  </div>
+  <div class="forms">
+      <div class="form-content">
+        <div class="login-form">
+          <div class="title">VENDEDOR</div>
+        <form action="#">
+          <div class="input-boxes">
+            <div class="input-box">
+              <i class='bx bxs-user-rectangle'></i>
+              <input type="text" placeholder="NOMBRE COMPLETO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-business'></i>
+              <input type="text" placeholder="NOMBRE DE VETERINARIA" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-location-plus'></i>
+              <input type="text" placeholder="CALLE" required>
+              <input type="text" placeholder="COL" required>
+              <input type="text" placeholder="LOCALIDAD" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxl-gmail'></i>
+              <input type="password" placeholder="CORREO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-phone-call'></i>
+              <input type="password" placeholder="NUMERO DE TELEFONO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-lock'></i>
+              <input type="password" placeholder="CONTRASEÑA" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-lock-open'></i>
+              <input type="password" placeholder="CONFIRMAR CONTRASEÑA" required>
+            </div>
+            
+            <div class="button input-box">
+              
+              <input type="submit" value="REGISTRARME">
+              <i class='bx bx-navigation'></i>
+            </div>
+            <div class="text sign-up-text"> <label for="flip">SOY COMPRADOR </label></div>
+          </div>
+      </form>
+    </div>
+      <div class="signup-form">
+        <div class="title">COMPRADOR</div>
+      <form action="#">
+          <div class="input-boxes">
+            <div class="input-box">
+              <i class='bx bxs-user-rectangle'></i>
+              <input type="text" placeholder="NOMBRE COMPLETO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-phone-call'></i>
+              <input type="text" placeholder="TELEFONO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxl-gmail'></i>
+              <input type="email" placeholder="CORREO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-location-plus'></i>
+              <input type="text" placeholder="CALLE" required>
+              <input type="text" placeholder="COLONIA" required>
+              <input type="text" placeholder="NUMERO" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bx-world'></i>
+              <input type="text" placeholder="MUNICIPIO" required>
+              <input type="text" placeholder="ESTADO" required>
+              <input type="text" placeholder="CODIGO POSTAL" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-lock'></i>
+              <input type="password" placeholder="CONTRASEÑA" required>
+            </div>
+            <div class="input-box">
+              <i class='bx bxs-lock-open'></i>
+              <input type="password" placeholder="CONFIRMAR CONTRASEÑA" required>
+            </div>
+            <div class="button input-box">
+              <input type="submit" value="REGISTRARME">
+            </div>
+            <div class="text sign-up-text"><label for="flip">SOY VENDEDOR</label></div>
+          </div>
+    </form>
+  </div>
+  </div>
+  </div>
+</div>-->

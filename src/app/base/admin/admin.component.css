@@ -1,0 +1,54 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+    --jesus-creation: #FEBA5C;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar-menu li a:hover{
+    background-color: var(--primary-color);
+}
+
+.sidebar-menu li:hover{
+  background-color: var(--primary-color);
+}
+
+.sidebar-menu li a:hover .icon,
+.sidebar-menu li a:hover .text{
+    color: var(--sidebar-color);
+}
+.sidebar-menu li ul li a:hover {
+  background-color: #FEBA5C;
+}

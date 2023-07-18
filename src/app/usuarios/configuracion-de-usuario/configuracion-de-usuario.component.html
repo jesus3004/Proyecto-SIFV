@@ -1,0 +1,195 @@
+<div class="box-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Datos Generales</h3>
+        <!-- Inicio input clave de usuario -->
+        <div class="form-group">
+          <label>Clave de usuario:</label>
+  
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-key"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="usuarios.clavUsuario"
+              readonly="true"
+            />
+          </div>
+        </div>
+        <!-- Fin input clave de usuario -->
+        <!-- Inicio input Nombre de usuario -->
+        <div class="form-group">
+          <label>Nombre:</label>
+  
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="usuarios.nombreUsuario"
+            />
+          </div>
+        </div>
+        <!-- Fin input Nombre de usuario -->
+        <!-- Inicio input telefono -->
+        <div class="form-group">
+          <label>Telefono:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </div>
+            <input type="text" class="form-control" 
+            [textMask]="{ mask: mask }" 
+            [(ngModel)]="usuarios.telefonoUsuario"
+            data-mask>
+          </div>
+        </div>
+        <!-- Fin input telefono -->
+        <!-- Inicio input Correo -->
+        <div class="form-group">
+          <label>Correo:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-google"></i>
+            </div>
+            <input type="email" 
+            [(ngModel)]="usuarios.correoUsuario"
+            readonly="true"
+            class="form-control">
+          </div>
+        </div>
+        <!-- Fin input correo -->
+        <!-- Inicio input contraseña -->
+        <div class="form-group">
+          <label>Contraseña:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa  fa-eye"></i>
+            </div>
+            <input type="password" 
+            [(ngModel)]="usuarios.passUsuario"
+            class="form-control">
+          </div>
+        </div>
+        <!-- Fin input contraseña -->
+        <!-- Inicio input confrimar contraseña -->
+        <div class="form-group">
+          <label>Confirme su Contraseña:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa  fa-eye"></i>
+            </div>
+            <input type="password"
+            [(ngModel)]="usuarios.passUsuario"
+             class="form-control">
+          </div>
+        </div>
+        <!-- Fin input confirmar contraseña -->
+        <!-- Inicio Rol de usaurio -->
+        <div class="form-group">
+          <label>Rol de usuario:</label>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-group"></i>
+            </div>
+            <select class="form-control select2" [(ngModel)]="usuarios.rolUsuario"
+             style="width: 100%">
+              <option [ngValue]="null" disabled>Seleccione una opción</option>
+              <option>ADMINISTRADOR</option>
+              <option>CAJERO</option>
+              <option>ALMACENISTA</option>
+            </select>
+          </div>
+        </div>
+        <!-- Fin Rol de usaurio -->
+      </div>
+      
+      <!-- Lado derecho de la columna-->
+      <div class="col-md-6">
+        <h3>Direccion</h3>
+        <!-- Inicio input Calle -->
+        <div class="form-group">
+          <label>Calle:</label>
+  
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-street-view"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="usuarios.calleUsuario"
+            />
+          </div>
+        </div>
+        <!-- Fin input Calle -->
+        <!-- Inicio input Colonia -->
+        <div class="form-group">
+          <label>Colonia:</label>
+  
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="glyphicon glyphicon-map-marker"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="usuarios.coloniaUsuario"
+            />
+          </div>
+        </div>
+        <!-- Fin input Colonia -->
+        <!-- Inicio input numero de casa -->
+        <div class="form-group">
+          <label>Numero de casa:</label>
+  
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              maxlength="70"
+              [(ngModel)]="usuarios.numCasUsuario"
+            />
+          </div>
+        </div>
+        <!-- Fin input numero de casa -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <a
+            class="btn btn-sm btn-block btn-danger glyphicon glyphicon-remove"
+            style="margin: 3px"
+            (click)="limpiar()"
+          >
+            Cancelar
+        </a>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <a
+            class="btn btn-sm btn-block btn-success glyphicon glyphicon-plus"
+            style="margin: 3px"
+            (click)="agregar()"
+          >
+            Agregar
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

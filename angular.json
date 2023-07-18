@@ -28,14 +28,18 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./src/assets/dist/css/AdminLTE.css",
+              "./src/assets/bootstrap/css/bootstrap.css",
+              "./src/assets/dist/css/skins/_all-skins.css",
+              "./node_module/@fortawesome/css/",
               "src/styles.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./src/assets/plugins/jQuery/jquery-2.2.3.min.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./src/app/archivosScript/js/app.min.js",
-              "./src/app/archivosScript/scriptsTodo.js",
+              "./src/assets/archivosScript/js/app.js",
+              "./src/assets/archivosScript/scriptsTodo.js",
               "./node_modules/jquery.dataTables.min.js/js/jquery.dataTables.min.js"
             ]
           },
@@ -45,12 +49,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "3mb"
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "500kb",
-                  "maximumError": "3mb"
+                  "maximumError": "10mb"
                 }
               ],
               "fileReplacements": [

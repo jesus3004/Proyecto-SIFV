@@ -1,78 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
-@import url(./app/dist/css/AdminLTE.min.css);
-@import url(./app/bootstrap/css/bootstrap.min.css);
-@import url(./app/dist/css/skins/_all-skins.min.css);
+
 @import "~@angular/material/prebuilt-themes/Indigo-pink.css";
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-html,
-body {
-min-height: 100%;
-}
-.layout-boxed html,
-.layout-boxed body {
-height: 100%;
-}
-body {
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-font-weight: 400;
-overflow-x: hidden;
-overflow-y: auto;
-}
-:root{
-  
-  --body-color: #E4E9F7;
-  --sidebar-color: #FFF;
-  --primary-color: #695CFE;
-  --primary-color-light: #F6F5FF;
-  --toggle-color: #DDD;
-  --text-color: #707070;
-
- 
-  --tran-03: all 0.2s ease;
-  --tran-03: all 0.3s ease;
-  --tran-04: all 0.3s ease;
-  --tran-05: all 0.3s ease;
-}
 
 
-body{
-  min-height: 100vh;
-  background-color: var(--body-color);
-  transition: var(--tran-05);
-  background: linear-gradient(135deg, #FFF, #DDD, #707070);
-}
-
-body.dark{
-  --body-color: #18191a;
-  --sidebar-color: #242526;
-  --primary-color: #3a3b3c;
-  --primary-color-light: #3a3b3c;
-  --toggle-color: #fff;
-  --text-color: #ccc;
-}
-
-html,
-body {
-  min-height: 100%;
-}
-.layout-boxed html,
-.layout-boxed body {
+.content-wrapper{
   height: 100%;
 }
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  overflow-x: hidden;
-  overflow-y: auto;
+
+html{
+  height: 100%;
+}
+
+.content{
+  align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .tarjeta{

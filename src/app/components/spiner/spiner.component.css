@@ -1,0 +1,27 @@
+
+.logo {
+  height: 130px;
+  margin-bottom: 10px;
+}
+
+.wrapper{
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+}
+.body {
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+  padding: 15px;
+  text-align: center;
+}
+
+.form-floating {
+  text-align: start;
+}
+
+.errorLabel {
+  margin-left: 5px;
+}

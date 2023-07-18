@@ -2,26 +2,33 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
-import { RegistrarUsuariosComponent } from './registrar-usuarios/registrar-usuarios.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { BaseComponent } from './base/base.component';
 import { FormsModule } from '@angular/forms';
-import { AgregarProductosComponent } from './agregar-productos/agregar-productos.component';
-import { AgregarProvedorComponent } from './agregar-provedor/agregar-provedor.component';
-import { NuevaVentaComponent } from './nueva-venta/nueva-venta.component';
-import { ProductosCaducarComponent } from './productos-caducar/productos-caducar.component';
-import { ProductosCaducadosComponent } from './productos-caducados/productos-caducados.component';
-import { AgregarNuevoUsuarioComponent } from './agregar-nuevo-usuario/agregar-nuevo-usuario.component';
-import { ListaDeProductosComponent } from './lista-de-productos/lista-de-productos.component';
-
 import { AppRoutingModule } from './app.routing';
-import { HistorialProductosComponent } from './historial-productos/historial-productos.component';
-import { HistorialUsuariosComponent } from './historial-usuarios/historial-usuarios.component';
-import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
-import { AgregarStockComponent } from './agregar-stock/agregar-stock.component';
-import { HistorialProvedoresComponent } from './historial-provedores/historial-provedores.component';
-import { AgrgarStockComponent } from './agrgar-stock/agrgar-stock.component';
+
+
+/* Componentes */
+import { HistorialProductosComponent } from './productos/historial-productos/historial-productos.component';
+import { HistorialUsuariosComponent } from './usuarios/historial-usuarios/historial-usuarios.component';
+import { HistorialVentasComponent } from './ventas/historial-ventas/historial-ventas.component';
+import { AgregarStockComponent } from './productos/agregar-stock/agregar-stock.component';
+import { HistorialProvedoresComponent } from './proveedor/historial-provedores/historial-provedores.component';
+import { AgregarProductosComponent } from './productos/agregar-productos/agregar-productos.component';
+import { AgregarProvedorComponent } from './proveedor/agregar-provedor/agregar-provedor.component';
+import { NuevaVentaComponent } from './ventas/nueva-venta/nueva-venta.component';
+import { ProductosCaducarComponent } from './productos/productos-caducar/productos-caducar.component';
+import { ProductosCaducadosComponent } from './productos/productos-caducados/productos-caducados.component';
+import { AgregarNuevoUsuarioComponent } from './usuarios/agregar-nuevo-usuario/agregar-nuevo-usuario.component';
+import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
+import { RegistrarUsuariosComponent } from './usuarios/registrar-usuarios/registrar-usuarios.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { BaseComponent } from './base/base.component';
+import { AdminComponent } from './base/admin/admin.component';
+import { AlmacenComponent } from './base/almacen/almacen.component';
+import { CajeroComponent } from './base/cajero/cajero.component';
+import { ErrorComponent } from './error/error.component';
+import { SpinerComponent } from './components/spiner/spiner.component';
+import { VerificarCorreoComponent } from './components/verificar-correo/verificar-correo.component';
+import { RecuperarPaswordComponent } from './components/recuperar-pasword/recuperar-pasword.component';
 
 /*
 Extras
@@ -35,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 
+
 /* Fire base */
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment'
@@ -44,6 +52,10 @@ import { ProductosService } from './Servicies/productos.service';
 import { TextMaskModule } from 'angular2-text-mask';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfiguracionDeUsuarioComponent } from './usuarios/configuracion-de-usuario/configuracion-de-usuario.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,23 +63,30 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegistrarUsuariosComponent,
     InicioComponent,
     BaseComponent,
-    AgregarProductosComponent,
     AgregarProvedorComponent,
     NuevaVentaComponent,
     ProductosCaducarComponent,
-    ProductosCaducadosComponent,
     AgregarNuevoUsuarioComponent,
-    ListaDeProductosComponent,
-    HistorialProductosComponent,
     HistorialUsuariosComponent,
     HistorialVentasComponent,
-    AgregarStockComponent,
     HistorialProvedoresComponent,
-    AgrgarStockComponent
+    AgregarProductosComponent,
+    ProductosCaducadosComponent,
+    HistorialProductosComponent,
+    AgregarStockComponent,
+    AdminComponent,
+    AlmacenComponent,
+    CajeroComponent,
+    ErrorComponent,
+    SpinerComponent,
+    VerificarCorreoComponent,
+    RecuperarPaswordComponent,
+    ConfiguracionDeUsuarioComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatTableModule,
@@ -77,7 +96,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     TextMaskModule,
     MatPaginatorModule,
     MatInputModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [ProductosService],

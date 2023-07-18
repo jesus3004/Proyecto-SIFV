@@ -1,0 +1,16 @@
+@import url('../../../assets/dist/css/AdminLTE.min.css');
+@import url('../../../assets/bootstrap/css/bootstrap.min.css');
+@import url('../../../assets/dist/css/skins/_all-skins.min.css');
+
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
+
+  th {
+    width: 20%;
+  }
+  
+  .pointer{
+    cursor: pointer;
+  }

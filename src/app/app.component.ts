@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { usuarios } from './interfaz/interfas';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,18 @@ export class AppComponent {
   title = 'proyecto';
   mostrarInicio = false;
   mostrarIniciarSesion = true; 
+  usuarioEntrada:usuarios={
+    idVeterinaria: '',
+    clavUsuario: '',
+    nombreUsuario: '',
+    telefonoUsuario: '',
+    correoUsuario: '',
+    passUsuario: '',
+    calleUsuario: '',
+    coloniaUsuario: '',
+    numCasUsuario: '',
+    rolUsuario: ''
+  }
 
   verifirificar(){
     if(this.mostrarInicio==false){

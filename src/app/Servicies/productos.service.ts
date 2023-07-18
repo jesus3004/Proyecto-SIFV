@@ -1,114 +1,185 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter,  Injectable, Input, Output } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import 'firebase/compat/storage';
-import { agregarProductos, lotes, provedores, ventas, detalleDeventas, usuarios, caducidad } from '../productos-caducar/interfaz/interfas';
-import Swal from 'sweetalert2';
+import { FirebaseCodeErrorEnum } from '../utils/firebase-code-error';
+import { agregarProductos, lotes, provedores, ventas, detalleDeventas, usuarios, caducidad, empresa } from '../interfaz/interfas';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  private colProductos:AngularFirestoreCollection<agregarProductos>;
-  private colProvedor:AngularFirestoreCollection<provedores>;
-  private colVentas:AngularFirestoreCollection<ventas>;
   private colUsuarios:AngularFirestoreCollection<usuarios>;
-  private colCaducidad:AngularFirestoreCollection<caducidad>;
+  private colveterinarias:AngularFirestoreCollection<empresa>
+  public usuarioArray:usuarios = {
+    idVeterinaria: '',
+    clavUsuario: '',
+    nombreUsuario: '',
+    telefonoUsuario: '',
+    correoUsuario: '',
+    passUsuario: '',
+    calleUsuario: '',
+    coloniaUsuario: '',
+    numCasUsuario: '',
+    rolUsuario: ''
+  } 
 
-  constructor(private readonly fireStore: AngularFirestore, private autenticar: AngularFireAuth) {
-    this.colProductos=fireStore.collection<agregarProductos>('productos');
-    this.colProvedor=fireStore.collection<provedores>('provedores');
-    this.colVentas=fireStore.collection<ventas>('ventas');
+
+
+  usuario: any; 
+  idVeterinaria:any;
+  listaUsuarios:usuarios [] = [];
+  auxiliar:usuarios = {
+    idVeterinaria: '',
+    clavUsuario: '',
+    nombreUsuario: '',
+    telefonoUsuario: '',
+    correoUsuario: '',
+    passUsuario: '',
+    calleUsuario: '',
+    coloniaUsuario: '',
+    numCasUsuario: '',
+    rolUsuario: ''
+  }
+
+  imprimirElDisparador(){
+    
+
+  }
+
+  constructor( private readonly fireStore: AngularFirestore, private autenticar: AngularFireAuth) {;
     this.colUsuarios=fireStore.collection<usuarios>('Usuarios');
-    this.colCaducidad=fireStore.collection<caducidad>('Caducidad');
+    this.colveterinarias=fireStore.collection<empresa>('veterinarias');
    }
-  
+
+   //Autenticadores
+
+   async autenticarVeterinaria(){
+
+    (await this.obtenerUsuarios()).subscribe((res) => {
+      this.listaUsuarios = res;
+      
+    });
+    
+    (await this.autenticar.currentUser.then(user => {
+      if(user && user.emailVerified) {
+        this.usuario = user?.email;
+      }
+    }));
+    console.log("Usuario en services "+this.usuario);
+     (await this.listaUsuarios.find((element) => {
+      //this.encontrarLote(element , valor)
+      if(element.correoUsuario == this.usuario){
+        console.log("Entro a element"+element.idVeterinaria);
+       this.idVeterinaria = element.idVeterinaria;
+       this.auxiliar = element;
+     }
+     }));
+     const respuesta = await this.colUsuarios.doc(this.auxiliar.clavUsuario).valueChanges();
+     console.log(respuesta)
+     return respuesta;
+     
+   }
+
    //servicios de productos
   async agregarProductos(datosProductos:agregarProductos){
-    const resultado = await this.colProductos.doc(datosProductos.codigoDeBarras).set(datosProductos);
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos').doc(datosProductos.codigoDeBarras).set(datosProductos);
     return resultado
   }
   async agregarLote(datosProductos:lotes, idProducto:agregarProductos){
-    return await this.fireStore.collection('productos/'+idProducto.codigoDeBarras+'/lote').doc(datosProductos.numeroDeLote).set(datosProductos);
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos/'+idProducto.codigoDeBarras+'/lote').doc(datosProductos.numeroDeLote).set(datosProductos);
+    return resultado
   }
   async obtenerProductos(){
-    return await this.colProductos.valueChanges();
+    return await this.fireStore.collection<agregarProductos>('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos').valueChanges();
   }
 
   async obtenerLotes(clave:string){
-    return await this.fireStore.collection<lotes>('productos/'+clave+'/lote').valueChanges();
+    return await this.fireStore.collection<lotes>('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos/'+clave+'/lote').valueChanges();
   }
 
   async obtenerLotesEspecificos(datosProductos:lotes, idProducto:agregarProductos){
-    console.log(idProducto.codigoDeBarras)
-    console.log(datosProductos.numeroDeLote)
-    console.log(this.fireStore.collection<lotes>('productos/'+idProducto.codigoDeBarras+'/lote').doc(datosProductos.numeroDeLote).valueChanges())
-    return await this.fireStore.collection<lotes>('productos/'+idProducto.codigoDeBarras+'/lote').doc(datosProductos.numeroDeLote).valueChanges();
+    return await this.fireStore.collection<lotes>('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos/'+idProducto.codigoDeBarras+'/lote').doc(datosProductos.numeroDeLote).valueChanges();
   }
 
   async buscarProductos(codigoDebarras:string){
-   return await this.colProductos.doc(codigoDebarras).valueChanges();
+   return await this.fireStore.collection<agregarProductos>('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos').doc(codigoDebarras).valueChanges();
   }
 
   async eliminarProducto(codigoDebarras:string){
-    const resultado = await this.colProductos.doc(codigoDebarras).delete()
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos').doc(codigoDebarras).delete()
     return resultado
   }
 
   async eliminarLote(codigoDeBarras:string, numeroLote:string){
-    return await this.fireStore.collection<lotes>('productos/'+codigoDeBarras+'/lote').doc(numeroLote).delete()
+    return await this.fireStore.collection<lotes>('veterinarias/'+this.usuarioArray.idVeterinaria+'/productos/'+codigoDeBarras+'/lote').doc(numeroLote).delete()
   }
 
   async Acaducir(caducidad:caducidad){
-    const resultado = await this.colCaducidad.doc(caducidad.codigoDeBarras+'-'+caducidad.numeroDeLote).set(caducidad)
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/todosLoslotes').doc(caducidad.codigoDeBarras+'-'+caducidad.numeroDeLote).set(caducidad);
     return resultado
   }
 
   async caducir(){
-    const resultado = await this.colCaducidad.valueChanges()
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/todosLoslotes').valueChanges()
     return resultado
   }
 
   //servicios de Provedor
   async agregarProbedor(datosProbedor:provedores){
-    const resultado = await this.colProvedor.doc(datosProbedor.clavProvedor).set(datosProbedor);
-    return resultado
+    /*await this.colProvedor.doc(datosProbedor.clavProvedor).set(datosProbedor);*/
+    
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/proveedor').doc(datosProbedor.clavProvedor).set(datosProbedor);
+    return resultado;
   }
   async obtenerProbedor(){
-    return await this.colProvedor.valueChanges();
+    const resultado = await this.fireStore.collection<provedores>('veterinarias/'+this.usuarioArray.idVeterinaria+'/proveedor').valueChanges()
+    return await resultado;
   }
 
   async eliminarProvedor(clave:string){
-    return await this.colProvedor.doc(clave).delete()
+    return await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/proveedor').doc(clave).delete()
   }
   //Servicios de ventas
   async agregarVeta(datosVenta:ventas){
-    const resultado = await this.colVentas.doc(datosVenta.claveDeVenta).set(datosVenta);
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/ventas').doc(datosVenta.claveDeVenta).set(datosVenta);
     return resultado
   }
   async obtenerVenta(){
-    return await this.colVentas.valueChanges();
+    const resultado = await this.fireStore.collection<ventas>('veterinarias/'+this.usuarioArray.idVeterinaria+'/ventas').valueChanges()
+    return await resultado;
   }
   
   async agregarDetalleVeta(ventas:String,datosDVenta:detalleDeventas){
+
+    const resultado = await this.fireStore.collection('veterinarias/'+this.usuarioArray.idVeterinaria+'/ventas/'+ventas+'/detalleVenta').doc(datosDVenta.claveproducto +  '-' +datosDVenta.numeroDeLote).set(datosDVenta);
     
-    return await this.fireStore.collection('ventas/'+ventas+'/detalleVenta').doc(datosDVenta.claveproducto +  '-' +datosDVenta.numeroDeLote).set(datosDVenta);
+    return resultado;
   }
   async obtenerDetalleVenta(ventas:string){
-    return await this.fireStore.collection('ventas/'+ventas+'/detalleVenta').valueChanges();
+    const resultado = await this.fireStore.collection<detalleDeventas>('veterinarias/'+this.usuarioArray.idVeterinaria+'/ventas/'+ventas+'/detalleVenta').valueChanges()
+    return resultado;
   }
 
   async eliminarDeVenta(ventas:string, lote:string){
-    return await this.fireStore.collection('ventas/'+ventas+'/detalleVenta').doc(lote).delete()
+    const resultado = await this.fireStore.collection<detalleDeventas>('veterinarias/'+this.usuarioArray.idVeterinaria+'/ventas/'+ventas+'/detalleVenta').doc(lote).delete();
+    return resultado;
   }
 
   /*Usuarios*/
 
   async agregarUsuarios(usuarios:usuarios){
+    usuarios.idVeterinaria = this.usuarioArray.idVeterinaria;
   const  resultado = await this.colUsuarios.doc(usuarios.clavUsuario).set(usuarios)
   return resultado
   }
+  async agregarUsuariosNuevo(usuarios:usuarios){
+    usuarios.idVeterinaria = this.usuarioArray.idVeterinaria;
+    const  resultado = await this.colUsuarios.doc(usuarios.clavUsuario).set(usuarios)
+    return resultado
+    }
 
   async obtenerUsuarios(){
     return await this.colUsuarios.valueChanges();
@@ -116,6 +187,14 @@ export class ProductosService {
 
   async eliminarUsuario(clave:string){
   return await this.colUsuarios.doc(clave).delete()
+  }
+
+  /* Datos generales de la empresa */
+
+  async agregarEmpresa(empresa:empresa){
+    
+    const resultado = await this.colveterinarias.doc(empresa.id).set(empresa)
+    return resultado;
   }
   
   exito(mensaje:string){
@@ -157,6 +236,16 @@ export class ProductosService {
     });
   }
 
+  
+
+  extra(mensaje:string, titulo:string, icon:SweetAlertIcon | undefined){
+    Swal.fire({
+      title: titulo,
+      text: mensaje,
+      icon: icon
+    });
+  }
+
   borrar(mensaje:string){
    const resultado = Swal.fire({
       title: '¿Estas seguro?',
@@ -177,5 +266,33 @@ export class ProductosService {
     return resultado
   }
 
+  codeError(code: string) {
+    switch (code) {
+      // El correo ya existe
+      case FirebaseCodeErrorEnum.EmailAlreadyInUse:
+        this.repetido('El usuario ya existe');
+        break
+      // Contraseña debil
+      case FirebaseCodeErrorEnum.WeakPassword:
+        this.repetido('La contraseña es muy debil');
+        break
+      // Correo invalido
+      case FirebaseCodeErrorEnum.InvalidEmail:
+        this.error('Correo invalido');
+        break
+      // Contraseña incorrecta
+      case FirebaseCodeErrorEnum.WrongPassword:
+        this.error('Contraseña incorrecta');
+        break
+      // El usuario no existe
+      case FirebaseCodeErrorEnum.UserNotFound:
+        this.error('El usuario no existe'); 
+        break
+      default:
+        this.error('Error desconocido');
+        break
+    }
+  }
  
+
 }
